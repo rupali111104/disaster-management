@@ -19,7 +19,7 @@ const Login = ({ onLogin }) => {
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || 'Login failed');
       onLogin(data.username);
-      navigate('/chat');
+      navigate('/chatroom-select');
     } catch (err) {
       setError(err.message);
     }

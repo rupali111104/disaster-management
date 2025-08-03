@@ -4,16 +4,15 @@ import ChatRoom from './ChatRoom';
 import Login from './Login';
 import Signup from './Signup';
 import LandingPage from './LandingPage';
-import ChatroomSelect from './ChatroomSelect';
+import ChatRoomSelect from './ChatRoomSelect';
 import ChatRoomGeneral from './ChatRoomGeneral';
-import ChatRoomNGO from './ChatRoomNGO';
-import ChatRoomRescuers from './ChatRoomRescuers';
+import ProblemSelect from "./ProblemSelect";
 import './App.css';
 
 function Header() {
   const location = useLocation();
-  // Only show header on chat page
-  if (location.pathname !== '/chat') return null;
+  // Show header on all /chat routes
+  if (!location.pathname.startsWith('/chat')) return null;
   return (
     <header className="chat-header">
       <h1>Disaster Management Chat Room</h1>
@@ -32,10 +31,13 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login onLogin={setUser} />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/chat" element={user ? <ChatroomSelect /> : <Navigate to="/login" />} />
-          <Route path="/chat/general" element={user ? <ChatRoomGeneral username={user} /> : <Navigate to="/login" />} />
-          <Route path="/chat/ngo" element={user ? <ChatRoomNGO username={user} /> : <Navigate to="/login" />} />
-          <Route path="/chat/rescuers" element={user ? <ChatRoomRescuers username={user} /> : <Navigate to="/login" />} />
+          <Route path="/chatroom-select" element={<ChatRoomSelect />} />
+          <Route path="/select-problem/:room" element={<ProblemSelect />} />
+          {/* Only allow chat if user is logged in */}
+          <Route
+            path="/chat/:room"
+            element={user ? <ChatRoomGeneral username={user} /> : <Navigate to="/login" />}
+          />
         </Routes>
       </div>
     </Router>
@@ -43,3 +45,4 @@ function App() {
 }
 
 export default App;
+

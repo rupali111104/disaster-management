@@ -401,6 +401,30 @@ body, html {
   color: #00bcd4;
 }
 
+.auth-link a,
+.auth-link {
+  color: #111 !important;
+  font-weight: 500;
+}
+
+.auth-success,
+.auth-error {
+  color: #111 !important;
+  font-weight: 600;
+}
+
+/* Add or update this rule for chat messages */
+.chat-message,
+.chat-message-content {
+  color: #111 !important;
+}
+
+/* If you have a specific selector for your own messages, add: */
+.my-chat-message,
+.my-chat-message-content {
+  color: #111 !important;
+}
+
 @media (max-width: 900px) {
   .landing-main-content {
     flex-direction: column;
